@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
         else
             anim.SetBool("Run", false);
 
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Vector2 jumpVelocity = new Vector2(0f, jumpSpeed);
             rb.velocity = jumpVelocity;
