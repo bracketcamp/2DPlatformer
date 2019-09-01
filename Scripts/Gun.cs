@@ -10,7 +10,6 @@ public class Gun : MonoBehaviour {
 
     public LayerMask mask;
 
-
     void Start()
     {
         firePoint = transform.FindChild("FirePoint");
@@ -44,6 +43,9 @@ public class Gun : MonoBehaviour {
 
         hit = Physics2D.Raycast(firePoint.position, (mousePos - firePointPos).normalized, gun.distance, mask);
         Debug.DrawLine(firePoint.position, (mousePos - firePointPos).normalized * gun.distance, Color.green);
+
+        Instantiate(gun.bullet, firePoint.position, transform.parent.rotation);
+
         if (hit.collider != null)
         {
             Debug.Log("We hit " + hit.collider.name);
