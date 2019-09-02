@@ -6,6 +6,8 @@ public class Gun : MonoBehaviour {
 
     private Transform firePoint;
 
+    public Transform muzzleFlash;
+
     private float timeToFire = 0f;
 
     public LayerMask mask;
@@ -44,7 +46,16 @@ public class Gun : MonoBehaviour {
         hit = Physics2D.Raycast(firePoint.position, (mousePos - firePointPos).normalized, gun.distance, mask);
         Debug.DrawLine(firePoint.position, (mousePos - firePointPos).normalized * gun.distance, Color.green);
 
-        Instantiate(gun.bullet, firePoint.position, transform.parent.rotation);
+        Transform bullet = Instantiate(gun.bullet, firePoint.position, transform.parent.rotation);
+        Transform muzzleflash = Instantiate(muzzleFlash, firePoint.position, transform.parent.rotation);
+
+        Destroy(bullet.gameObject, 3f);
+
+        float size = Random.Range(0.4f, 0.8f);
+
+        muzzleflash.localScale = new Vector3(size, size, muzzleflash.localScale.z);
+
+        Destroy(muzzleflash.gameObject, 0.05f);
 
         if (hit.collider != null)
         {
