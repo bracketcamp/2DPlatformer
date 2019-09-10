@@ -8,6 +8,8 @@ public class ObjectPooler : MonoBehaviour {
 
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
+    #region Singleton
+
     public static ObjectPooler instance;
 
     void Awake()
@@ -15,6 +17,8 @@ public class ObjectPooler : MonoBehaviour {
         if (instance == null)
             instance = this;
     }
+
+    #endregion
 
     void Start()
     {
