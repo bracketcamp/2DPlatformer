@@ -51,7 +51,7 @@ public class PlayerHealth : MonoBehaviour {
 
     void KillPlayer()
     {
+        GameManager.instance.Respawn();
         Destroy(gameObject);
     }
-
 }
