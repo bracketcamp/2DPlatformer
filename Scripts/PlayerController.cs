@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            ObjectPooler.instance.SpawnFromPool("PlayerJumpParticles", transform.position, Quaternion.identity);
             Vector2 jumpVelocity = new Vector2(0f, jumpSpeed);
             rb.velocity = jumpVelocity;
             anim.SetBool("Jump", true);

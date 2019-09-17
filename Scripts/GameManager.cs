@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator RespawnPlayer()
     {
+        ObjectPooler.instance.SpawnFromPool("RespawnParticles", spawnPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(spawnDelay);
         Transform p = Instantiate(player, spawnPoint.position, Quaternion.identity);
 
