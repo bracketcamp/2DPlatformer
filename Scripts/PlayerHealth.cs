@@ -1,57 +1,43 @@
 ﻿using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : CharacterStats
+{
+    public float deathHeight;
 
-    private int Health;
-
-    [HideInInspector]
-    public int health
-    {
-
-        get
-        {
-            return Health;
-        }
-
-        set
-        {
-            Health = Mathf.Clamp(value, 0, maxHealth);
-        }
-
-
-    }
-
-    public int maxHealth = 100;
-
-    public float deathHeight = -4f;
+    #region Singleton
 
     public static PlayerHealth instance;
 
     void Awake()
     {
-        Health = maxHealth;
-
         if (instance == null)
             instance = this;
     }
 
+    #endregion
+
     void Update()
     {
         if (transform.position.y <= deathHeight)
-            DamagePlayer(maxHealth);
+            TakeDamage(int.MaxValue);
     }
 
-    public void DamagePlayer(int damage)
+    public override void Die()
     {
-        Health -= damage;
+        base.Die();
 
-        if (Health <= 0)
-            KillPlayer();
-    }
-
-    void KillPlayer()
-    {
-        GameManager.instance.Respawn();
         Destroy(gameObject);
+
+        GameManager.instance.Respawn();
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.CompareTag("Enemy"))
+        {
+            TakeDamage(col.collider.GetComponent<EnemyHealth>().damageToPlayer);
+            CharacterStats stats = col.collider.GetComponent<CharacterStats>();
+            stats.TakeDamage(int.MaxValue);
+        }
     }
 }
