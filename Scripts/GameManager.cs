@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour {
         Transform p = Instantiate(player, spawnPoint.position, Quaternion.identity);
 
         FindObjectOfType<PlayerFollow>().health = p.GetComponent<PlayerHealth>();
+        foreach (EnemyAI ai in FindObjectsOfType<EnemyAI>())
+        {
+            ai.player = p;
+        }
     }
 
 }
