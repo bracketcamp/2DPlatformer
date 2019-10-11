@@ -51,6 +51,8 @@ public class Shooting : MonoBehaviour {
 
         muzzleflash.transform.localScale = new Vector3(size, size, muzzleflash.transform.localScale.z);
 
+        AudioManager.instance.Play("Shot");
+
         if (hit.collider != null)
         {
             CharacterStats stats = hit.collider.GetComponent<CharacterStats>();

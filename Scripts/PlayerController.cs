@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour {
             Vector2 jumpVelocity = new Vector2(0f, jumpSpeed);
             rb.velocity = jumpVelocity;
             anim.SetBool("Jump", true);
+
+            AudioManager.instance.Play("Jump");
         }
     }
 
