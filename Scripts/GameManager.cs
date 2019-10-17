@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
 
     public Transform player;
     public Transform spawnPoint;
+
+    public RectTransform playerStatsIndicator;
+
+    public TextMeshProUGUI playerHPText;
 
     public float spawnDelay = 2f;
 
@@ -37,6 +42,16 @@ public class GameManager : MonoBehaviour {
         {
             ai.player = p;
         }
+
+        CharacterStats stats = p.GetComponent<CharacterStats>();
+
+        if (stats.indicator == null)
+            stats.indicator = playerStatsIndicator;
+
+        if (stats.HPText == null)
+            stats.HPText = playerHPText;
+
+        stats.UpdateUI(stats.maxHealth);
     }
 
 }
