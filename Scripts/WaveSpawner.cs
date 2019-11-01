@@ -62,7 +62,7 @@ public class WaveSpawner : MonoBehaviour
 
             Vector2 playerPos = PlayerHealth.instance.transform.position;
 
-            Vector2 pos = new Vector2(Random.Range(-20, 20) + playerPos.x, Random.Range(-20, 20) + playerPos.y);
+            Vector2 pos = new Vector2(Random.Range(-20f, 20f) + playerPos.x, Random.Range(-5f, 20f) + playerPos.y);
 
             Transform enemy = Instantiate(randEnemy, pos, Quaternion.identity);
 

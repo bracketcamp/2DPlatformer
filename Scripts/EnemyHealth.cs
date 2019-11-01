@@ -16,6 +16,10 @@ public class EnemyHealth : CharacterStats
         enemies.Remove(transform);
 
         Destroy(gameObject);
+
+        CameraShake shaker = CameraShake.instance;
+
+        shaker.StartCoroutine(shaker.Shake(0.2f, 0.07f));
     }
 
 }
