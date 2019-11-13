@@ -4,6 +4,10 @@ public class PlayerHealth : CharacterStats
 {
     public float deathHeight;
 
+    public int lives = 3;
+
+    private GameManager manager;
+
     #region Singleton
 
     public static PlayerHealth instance;
@@ -16,6 +20,13 @@ public class PlayerHealth : CharacterStats
 
     #endregion
 
+    void Start()
+    {
+        currentHealth = maxHealth;
+
+        manager = GameManager.instance;
+    }
+
     void Update()
     {
         if (transform.position.y <= deathHeight)
@@ -26,9 +37,11 @@ public class PlayerHealth : CharacterStats
     {
         base.Die();
 
-        Destroy(gameObject);
+        manager.RemainingLives--;
 
-        GameManager.instance.Respawn();
+        manager.Respawn();
+
+        Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -36,7 +49,7 @@ public class PlayerHealth : CharacterStats
         if (col.collider.CompareTag("Enemy"))
         {
             TakeDamage(col.collider.GetComponent<EnemyHealth>().damageToPlayer);
-            CharacterStats stats = col.collider.GetComponent<CharacterStats>();
+            CharacterStats stats = col.collider.GetComponent<EnemyHealth>();
             stats.TakeDamage(int.MaxValue);
         }
     }
