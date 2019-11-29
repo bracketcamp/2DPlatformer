@@ -21,6 +21,8 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this);
+
         foreach (Sound s in sounds)
         {
             AudioSource source = gameObject.AddComponent<AudioSource>();

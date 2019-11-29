@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Shooting : MonoBehaviour {
 
@@ -17,6 +18,9 @@ public class Shooting : MonoBehaviour {
 
     void Update()
     {
+        if (EventSystem.current.currentSelectedGameObject)
+            return;
+
         if (gun.fireRate == 0)
         {
             if (Input.GetButtonDown("Fire1"))

@@ -88,9 +88,4 @@ public class GameManager : MonoBehaviour {
         stats.UpdateUI(stats.maxHealth);
     }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
 }
