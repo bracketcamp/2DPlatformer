@@ -12,12 +12,28 @@ public class GameManager : MonoBehaviour {
     public RectTransform playerStatsIndicator;
 
     public TextMeshProUGUI playerHPText;
+    public TextMeshProUGUI playerScoreText;
 
     public GameObject gameOverPanel;
 
     public float spawnDelay = 2f;
 
     public int remainingLives;
+
+    int CurScore;
+
+    public int curScore
+    {
+        get
+        {
+            return CurScore;
+        }
+
+        set
+        {
+            AddScore(value);
+        }
+    }
 
     public int RemainingLives
     {
@@ -49,6 +65,13 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         RemainingLives = PlayerHealth.instance.lives;
+    }
+
+    public void AddScore(int score)
+    {
+        CurScore += score;
+
+        playerScoreText.text = curScore.ToString();
     }
 
     public void Respawn()
