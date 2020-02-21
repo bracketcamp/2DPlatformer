@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public TextMeshProUGUI playerHPText;
     public TextMeshProUGUI playerScoreText;
 
+    public Transform[] livesImages;
+
     public GameObject gameOverPanel;
 
     public float spawnDelay = 2f;

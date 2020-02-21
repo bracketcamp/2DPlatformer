@@ -37,6 +37,8 @@ public class PlayerHealth : CharacterStats
     {
         base.Die();
 
+        manager.livesImages[manager.RemainingLives - 1].gameObject.SetActive(false);
+
         manager.RemainingLives--;
 
         manager.Respawn();
